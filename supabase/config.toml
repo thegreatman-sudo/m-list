@@ -1,0 +1,40 @@
+project_id = "dineflow"
+
+[functions.pin-login]
+verify_jwt = false
+
+[functions.cors-proxy]
+verify_jwt = true
+
+[functions.sitemap-xml]
+verify_jwt = false
+
+[functions.create-tenant]
+verify_jwt = true
+
+[functions.resolve-table-token]
+verify_jwt = false
+
+[functions.submit-order]
+verify_jwt = false
+
+[functions.send-email]
+verify_jwt = false
+
+[functions.create-subscription-payment]
+verify_jwt = true
+
+[functions.midtrans-webhook-platform]
+verify_jwt = false
+
+[functions.check-payment-status]
+verify_jwt = false
+
+[functions.create-bill-payment]
+verify_jwt = false
+
+[functions.midtrans-webhook-tenant]
+verify_jwt = false
+
+[functions.midtrans-refund]
+verify_jwt = true

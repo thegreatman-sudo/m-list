@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --df-bg: #0b0b0f;
+  --df-surface: #131319;
+  --df-surface-2: #1b1b24;
+  --df-border: #26262f;
+  --df-text: #f5f5f7;
+  --df-muted: #9a9aa5;
+  --df-brand: #ea580c;
+  --df-brand-soft: #fb923c;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--df-bg);
+  color: var(--df-text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Sora', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a2a35; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a48; }
+
+@keyframes df-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.55); }
+  70% { box-shadow: 0 0 0 14px rgba(234, 88, 12, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(234, 88, 12, 0); }
+}
+.df-pulse { animation: df-pulse-ring 1.8s infinite; }
+
+@keyframes df-flash {
+  0%, 100% { background-color: #1f1f29; }
+  50% { background-color: #312814; }
+}
+.df-flash { animation: df-flash 1.2s ease-in-out 3; }
+
+@keyframes df-slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.df-slide-up { animation: df-slide-up 0.28s ease-out; }
+
+@keyframes df-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.df-fade { animation: df-fade 0.2s ease-out; }
+
+@keyframes df-shimmer {
+  0% { background-position: -800px 0; }
+  100% { background-position: 800px 0; }
+}
+.df-skeleton {
+  background: linear-gradient(90deg, #15151c 25%, #1f1f29 50%, #15151c 75%);
+  background-size: 1600px 100%;
+  animation: df-shimmer 1.4s infinite linear;
+}
+
+.df-no-scrollbar::-webkit-scrollbar { display: none; }
+.df-no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
