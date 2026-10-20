@@ -66,6 +66,28 @@ export interface Outlet {
   payment_methods: string[];
   website_hero_title: string | null;
   website_tagline: string | null;
+  business_type: string;
+  phone: string | null;
+  email: string | null;
+  address: string | null;
+  map_lat: number | null;
+  map_lng: number | null;
+  website_url: string | null;
+  instagram_url: string | null;
+  facebook_url: string | null;
+  tiktok_url: string | null;
+  language: string;
+  receipt_header: string | null;
+  receipt_footer: string | null;
+  receipt_paper_size: string;
+  notification_sound: boolean;
+  notification_email: boolean;
+  notification_whatsapp_template: string | null;
+  tax_inclusive: boolean;
+  rounding_rule: string;
+  order_cancel_window_minutes: number;
+  call_waiter_reasons: string[];
+  call_waiter_cooldown_seconds: number;
 }
 
 export interface Area {
@@ -287,6 +309,14 @@ export interface Tenant {
   payment_method_brand: string | null;
   payment_method_last4: string | null;
   cancelled_at: string | null;
+  business_type: string;
+  phone: string | null;
+  email: string | null;
+  address: string | null;
+  website_url: string | null;
+  instagram_url: string | null;
+  facebook_url: string | null;
+  tiktok_url: string | null;
 }
 
 export interface SubscriptionRow {

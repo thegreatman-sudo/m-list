@@ -1,7 +1,4 @@
-import { Routes, Route, Navigate, useLocation, useNavigate, Link } from 'react-router-dom';
-import { Utensils, ChefHat, ConciergeBell, CreditCard, CalendarDays, LayoutGrid, QrCode, Music } from 'lucide-react';
-import { cn } from '@/lib/format';
-import { Wordmark } from '@/components/Wordmark';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { GuestApp } from '@/surfaces/guest/GuestApp';
 import { DJApp } from '@/surfaces/dj/DJApp';
 import { SongSettingsPage } from '@/surfaces/songs/SongSettingsPage';
@@ -14,7 +11,6 @@ import { LandingPage } from '@/pages/Landing';
 import { PricingPage } from '@/pages/Pricing';
 import { LegalPage } from '@/pages/Legal';
 import { AuthPage } from '@/pages/Auth';
-import { DashboardPage } from '@/surfaces/dashboard/DashboardApp';
 import { InventoryApp } from '@/surfaces/inventory/InventoryApp';
 import { BillingPage } from '@/surfaces/billing/BillingApp';
 import { SuperAdminPage } from '@/surfaces/superadmin/SuperAdminApp';
@@ -23,6 +19,10 @@ import { HelpCenterPage } from '@/pages/HelpCenter';
 import { RebrandPage } from '@/pages/Rebrand';
 import { useAuth } from '@/lib/auth';
 import { Spinner } from '@/components/ui';
+import { AppShell } from '@/components/AppShell';
+import { HomePage } from '@/pages/app/HomePage';
+import { SettingsPage } from '@/pages/app/SettingsPage';
+import { PlaceholderPage } from '@/pages/app/PlaceholderPage';
 
 export default function App() {
   return (
@@ -39,17 +39,29 @@ export default function App() {
       {/* Demo of the product surfaces (no auth) */}
       <Route path="/demo/*" element={<DemoShell />} />
 
-      {/* Authenticated dashboard */}
-      <Route path="/app/*" element={<RequireAuth><DashboardPage /></RequireAuth>} />
-      <Route path="/inventory/*" element={<RequireAuth><InventoryApp /></RequireAuth>} />
+      {/* Authenticated back office */}
+      <Route path="/app" element={<RequireAuth><AppShell /></RequireAuth>}>
+        <Route index element={<HomePage />} />
+        <Route path="settings" element={<SettingsPage />} />
+        <Route path="kitchen" element={<KDSApp />} />
+        <Route path="waiter" element={<WaiterApp />} />
+        <Route path="pos" element={<POSApp />} />
+        <Route path="reservations" element={<ReservationsApp />} />
+        <Route path="tables" element={<AdminApp />} />
+        <Route path="menu" element={<AdminApp />} />
+        <Route path="songs" element={<SongSettingsPage />} />
+        <Route path="inventory" element={<InventoryApp />} />
+        <Route path="orders" element={<PlaceholderPage title="Orders" hint="Order list and detail with filters — coming next." />} />
+        <Route path="customers" element={<PlaceholderPage title="Customers" />} />
+        <Route path="reports" element={<PlaceholderPage title="Reports" />} />
+        <Route path="staff" element={<PlaceholderPage title="Staff" hint="Invite and manage your team — coming next." />} />
+        <Route path="website" element={<PlaceholderPage title="Website" />} />
+      </Route>
       <Route path="/billing" element={<RequireAuth><BillingPage /></RequireAuth>} />
       <Route path="/superadmin" element={<RequireAuth><SuperAdminPage /></RequireAuth>} />
 
       {/* DJ screen (DJ, Manager, Owner) */}
       <Route path="/dj" element={<DJRoute />} />
-
-      {/* Song request settings (Owner, Manager) */}
-      <Route path="/app/songs" element={<RequireAuth><SongSettingsPage /></RequireAuth>} />
 
       {/* Public restaurant website */}
       <Route path="/r/:slug" element={<PublicSitePage />} />
